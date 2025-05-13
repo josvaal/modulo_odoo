@@ -21,6 +21,8 @@ services:
     image: postgres:16.0
     container_name: db
     restart: unless-stopped
+    ports:
+      - "5432:5432"
     environment:
       - POSTGRES_DB=odoo
       - POSTGRES_PASSWORD=odoo
