@@ -17,18 +17,16 @@
                             <field name="gestor_id" />
                             <field name="comentarios" />
                         </group>
-                        <footer>
-                            <button name="action_en_proceso"
-                                type="object"
-                                string="Marcar En Proceso"
-                                invisible="state != 'pendiente'"
-                                class="btn-primary" />
-                            <button name="action_completada"
-                                type="object"
-                                string="Marcar Completada"
-                                invisible="state != 'en_proceso'"
-                                class="btn-success" />
-                        </footer>
+                        <button name="action_en_proceso"
+                            type="object"
+                            string="Marcar En Proceso"
+                            invisible="state != 'pendiente'"
+                            class="btn-primary" />
+                        <button name="action_completada"
+                            type="object"
+                            string="Marcar Completada"
+                            invisible="state != 'en_proceso'"
+                            class="btn-success" />
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" />
