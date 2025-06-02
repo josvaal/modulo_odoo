@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 acceso_solicitante,acceso.solicitante,model_solicitud_interna,solicitud_interna.group_solicitante,1,1,1,0
 acceso_gestor,acceso.gestor,model_solicitud_interna,solicitud_interna.group_gestor,1,1,1,1
+acceso_admin,acceso.admin,model_solicitud_interna,,1,1,1,1
