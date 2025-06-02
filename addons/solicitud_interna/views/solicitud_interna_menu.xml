@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <menuitem id="menu_solicitud_interna_root" name="Solicitudes Internas" sequence="10"/>
+        <menuitem id="menu_solicitud_interna" name="Solicitudes" parent="menu_solicitud_interna_root" action="action_solicitud_interna"/>
+
+        <record id="action_solicitud_interna" model="ir.actions.act_window">
+            <field name="name">Solicitudes Internas</field>
+            <field name="res_model">solicitud.interna</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crea tu primera solicitud interna
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

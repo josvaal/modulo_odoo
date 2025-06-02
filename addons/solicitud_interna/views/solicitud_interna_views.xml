@@ -1,0 +1,48 @@
+<odoo>
+    <data>
+        <record id="view_solicitud_interna_form" model="ir.ui.view">
+            <field name="name">solicitud.interna.form</field>
+            <field name="model">solicitud.interna</field>
+            <field name="arch" type="xml">
+                <form string="Solicitud Interna">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="category"/>
+                            <field name="state" readonly="1"/>
+                            <field name="fecha_solicitud" readonly="1"/>
+                            <field name="solicitante_id" readonly="1"/>
+                            <field name="gestor_id"/>
+                            <field name="comentarios"/>
+                        </group>
+                        <footer>
+                            <button name="action_en_proceso" type="object" string="Marcar En Proceso" states="pendiente" class="btn-primary"/>
+                            <button name="action_completada" type="object" string="Marcar Completada" states="en_proceso" class="btn-success"/>
+                        </footer>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_solicitud_interna_tree" model="ir.ui.view">
+            <field name="name">solicitud.interna.tree</field>
+            <field name="model">solicitud.interna</field>
+            <field name="arch" type="xml">
+                <tree string="Solicitudes Internas">
+                    <field name="name"/>
+                    <field name="category"/>
+                    <field name="state"/>
+                    <field name="fecha_solicitud"/>
+                    <field name="solicitante_id"/>
+                    <field name="gestor_id"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>
