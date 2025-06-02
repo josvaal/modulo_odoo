@@ -44,14 +44,14 @@
             <field name="name">solicitud.interna.tree</field>
             <field name="model">solicitud.interna</field>
             <field name="arch" type="xml">
-                <tree string="Solicitudes Internas">
+                <list string="Solicitudes Internas">
                     <field name="name" />
                     <field name="category" />
                     <field name="state" />
                     <field name="fecha_solicitud" />
                     <field name="solicitante_id" />
                     <field name="gestor_id" />
-                </tree>
+                </list>
             </field>
         </record>
     </data>
