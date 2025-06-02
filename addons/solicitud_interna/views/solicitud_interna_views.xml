@@ -17,8 +17,8 @@
                             <field name="comentarios"/>
                         </group>
                         <footer>
-                            <button name="action_en_proceso" type="object" string="Marcar En Proceso" states="pendiente" class="btn-primary"/>
-                            <button name="action_completada" type="object" string="Marcar Completada" states="en_proceso" class="btn-success"/>
+                            <button name="action_en_proceso" type="object" string="Marcar En Proceso" if="state == 'pendiente'" class="btn-primary"/>
+                            <button name="action_completada" type="object" string="Marcar Completada" if="state == 'en_proceso'" class="btn-success"/>
                         </footer>
                     </sheet>
                     <div class="oe_chatter">
