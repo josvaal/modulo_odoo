@@ -1,9 +1,5 @@
 <odoo>
     <data>
-        <menuitem id="menu_solicitud_interna_root" name="Solicitudes Internas" sequence="10" />
-        <menuitem id="menu_solicitud_interna" name="Solicitudes"
-            parent="menu_solicitud_interna_root" action="action_solicitud_interna" />
-
         <record id="action_solicitud_interna" model="ir.actions.act_window">
             <field name="name">Solicitudes Internas</field>
             <field name="res_model">solicitud.interna</field>
@@ -14,5 +10,8 @@
                 </p>
             </field>
         </record>
+        <menuitem id="menu_solicitud_interna_root" name="Solicitudes Internas" sequence="10" />
+        <menuitem id="menu_solicitud_interna" name="Solicitudes"
+            parent="menu_solicitud_interna_root" action="solicitud_interna.action_solicitud_interna" />
     </data>
 </odoo>
