@@ -1,10 +1,11 @@
 {
     'name': 'solicitud_interna',
-    'version': '16.0.1.0.0',
+    'version': '18.0.1.0',
     'summary': 'Sistema de Gestión de Solicitudes Internas',
     'category': 'Tools',
     'author': 'Tu Empresa',
     'website': '',
+    'license': 'LGPL-3',
     'depends': ['mail'],
     'data': [
         'security/security.xml',
