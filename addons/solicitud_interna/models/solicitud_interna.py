@@ -23,6 +23,13 @@ class SolicitudInterna(models.Model):
     solicitante_id = fields.Many2one('res.users', string='Solicitante', default=lambda self: self.env.user, tracking=True)
     gestor_id = fields.Many2one('res.users', string='Gestor', tracking=True)
     comentarios = fields.Text(string='Comentarios')
+    departamento_id = fields.Many2one('departamento.solicitud', string='Departamento')
+    tipo_material_id = fields.Many2one('tipo.material', string='Tipo de Material')
+    prioridad_id = fields.Many2one('prioridad.solicitud', string='Prioridad')
+    proveedor_id = fields.Many2one('proveedor.servicio', string='Proveedor de Servicio')
+    historial_estado_ids = fields.One2many('historial.estado.solicitud', 'solicitud_id', string='Historial de Estados')
+    comentario_ids = fields.One2many('comentario.solicitud', 'solicitud_id', string='Comentarios')
+    encuesta_ids = fields.One2many('encuesta.satisfaccion', 'solicitud_id', string='Encuestas de Satisfacción')
 
     def action_en_proceso(self):
         self.state = 'en_proceso'
