@@ -1,0 +1,84 @@
+<odoo>
+    <data noupdate="1">
+        <!-- Departamentos predeterminados -->
+        <record id="departamento_administracion" model="departamento.solicitud">
+            <field name="name">Administración</field>
+            <field name="codigo">ADM</field>
+            <field name="descripcion">Departamento de Administración General</field>
+            <field name="ubicacion">Piso 1 - Oficina 101</field>
+            <field name="presupuesto_anual">50000.00</field>
+        </record>
+
+        <record id="departamento_recursos_humanos" model="departamento.solicitud">
+            <field name="name">Recursos Humanos</field>
+            <field name="codigo">RRHH</field>
+            <field name="descripcion">Departamento de Recursos Humanos</field>
+            <field name="ubicacion">Piso 2 - Oficina 201</field>
+            <field name="presupuesto_anual">75000.00</field>
+        </record>
+
+        <record id="departamento_contabilidad" model="departamento.solicitud">
+            <field name="name">Contabilidad</field>
+            <field name="codigo">CONT</field>
+            <field name="descripcion">Departamento de Contabilidad y Finanzas</field>
+            <field name="ubicacion">Piso 1 - Oficina 102</field>
+            <field name="presupuesto_anual">60000.00</field>
+        </record>
+
+        <record id="departamento_ventas" model="departamento.solicitud">
+            <field name="name">Ventas</field>
+            <field name="codigo">VEN</field>
+            <field name="descripcion">Departamento de Ventas y Marketing</field>
+            <field name="ubicacion">Piso 3 - Oficina 301</field>
+            <field name="presupuesto_anual">100000.00</field>
+        </record>
+
+        <record id="departamento_produccion" model="departamento.solicitud">
+            <field name="name">Producción</field>
+            <field name="codigo">PROD</field>
+            <field name="descripcion">Departamento de Producción</field>
+            <field name="ubicacion">Planta - Área A</field>
+            <field name="presupuesto_anual">200000.00</field>
+        </record>
+
+        <record id="departamento_it" model="departamento.solicitud">
+            <field name="name">Tecnología de la Información</field>
+            <field name="codigo">IT</field>
+            <field name="descripcion">Departamento de Sistemas y Tecnología</field>
+            <field name="ubicacion">Piso 2 - Oficina 202</field>
+            <field name="presupuesto_anual">80000.00</field>
+        </record>
+
+        <record id="departamento_mantenimiento" model="departamento.solicitud">
+            <field name="name">Mantenimiento</field>
+            <field name="codigo">MANT</field>
+            <field name="descripcion">Departamento de Mantenimiento y Servicios Generales</field>
+            <field name="ubicacion">Planta - Área B</field>
+            <field name="presupuesto_anual">90000.00</field>
+        </record>
+
+        <record id="departamento_calidad" model="departamento.solicitud">
+            <field name="name">Control de Calidad</field>
+            <field name="codigo">CAL</field>
+            <field name="descripcion">Departamento de Control de Calidad</field>
+            <field name="ubicacion">Planta - Laboratorio</field>
+            <field name="presupuesto_anual">70000.00</field>
+        </record>
+
+        <record id="departamento_compras" model="departamento.solicitud">
+            <field name="name">Compras</field>
+            <field name="codigo">COMP</field>
+            <field name="descripcion">Departamento de Compras y Adquisiciones</field>
+            <field name="ubicacion">Piso 1 - Oficina 103</field>
+            <field name="presupuesto_anual">40000.00</field>
+        </record>
+
+        <record id="departamento_logistica" model="departamento.solicitud">
+            <field name="name">Logística</field>
+            <field name="codigo">LOG</field>
+            <field name="descripcion">Departamento de Logística y Almacén</field>
+            <field name="ubicacion">Almacén Principal</field>
+            <field name="presupuesto_anual">85000.00</field>
+        </record>
+    </data>
+</odoo>

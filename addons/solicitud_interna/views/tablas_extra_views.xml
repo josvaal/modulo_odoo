@@ -1,0 +1,351 @@
+<odoo>
+    <data>
+        <!-- Departamento Views -->
+        <record id="view_departamento_solicitud_form" model="ir.ui.view">
+            <field name="name">departamento.solicitud.form</field>
+            <field name="model">departamento.solicitud</field>
+            <field name="arch" type="xml">
+                <form string="Departamento">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="codigo"/>
+                                <field name="supervisor_id"/>
+                            </group>
+                            <group>
+                                <field name="ubicacion"/>
+                                <field name="presupuesto_anual"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="descripcion" widget="text"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="total_solicitudes" readonly="1"/>
+                                <field name="solicitudes_pendientes" readonly="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_departamento_solicitud_tree" model="ir.ui.view">
+            <field name="name">departamento.solicitud.tree</field>
+            <field name="model">departamento.solicitud</field>
+            <field name="arch" type="xml">
+                <list string="Departamentos">
+                    <field name="codigo"/>
+                    <field name="name"/>
+                    <field name="supervisor_id"/>
+                    <field name="ubicacion"/>
+                    <field name="total_solicitudes"/>
+                    <field name="solicitudes_pendientes"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Prioridad Views -->
+        <record id="view_prioridad_solicitud_form" model="ir.ui.view">
+            <field name="name">prioridad.solicitud.form</field>
+            <field name="model">prioridad.solicitud</field>
+            <field name="arch" type="xml">
+                <form string="Prioridad">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="nivel"/>
+                                <field name="color" widget="color"/>
+                            </group>
+                            <group>
+                                <field name="tiempo_respuesta_horas"/>
+                                <field name="activo"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="descripcion" widget="text"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_prioridad_solicitud_tree" model="ir.ui.view">
+            <field name="name">prioridad.solicitud.tree</field>
+            <field name="model">prioridad.solicitud</field>
+            <field name="arch" type="xml">
+                <list string="Prioridades">
+                    <field name="nivel"/>
+                    <field name="name"/>
+                    <field name="tiempo_respuesta_horas"/>
+                    <field name="color" widget="color"/>
+                    <field name="activo"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Tipo Material Views -->
+        <record id="view_tipo_material_form" model="ir.ui.view">
+            <field name="name">tipo.material.form</field>
+            <field name="model">tipo.material</field>
+            <field name="arch" type="xml">
+                <form string="Tipo de Material">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="object" name="toggle_active" icon="fa-archive">
+                                <field name="necesita_reposicion" widget="boolean"/>
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_text">Necesita Reposición</span>
+                                </div>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="codigo"/>
+                                <field name="categoria"/>
+                                <field name="proveedor_id"/>
+                            </group>
+                            <group>
+                                <field name="stock_minimo"/>
+                                <field name="precio_unitario"/>
+                                <field name="activo"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="descripcion" widget="text"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tipo_material_tree" model="ir.ui.view">
+            <field name="name">tipo.material.tree</field>
+            <field name="model">tipo.material</field>
+            <field name="arch" type="xml">
+                <list string="Tipos de Material" decoration-warning="necesita_reposicion">
+                    <field name="codigo"/>
+                    <field name="name"/>
+                    <field name="categoria"/>
+                    <field name="stock_minimo"/>
+                    <field name="precio_unitario"/>
+                    <field name="proveedor_id"/>
+                    <field name="necesita_reposicion" invisible="1"/>
+                    <field name="activo"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Proveedor Servicio Views -->
+        <record id="view_proveedor_servicio_form" model="ir.ui.view">
+            <field name="name">proveedor.servicio.form</field>
+            <field name="model">proveedor.servicio</field>
+            <field name="arch" type="xml">
+                <form string="Proveedor de Servicio">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="codigo"/>
+                                <field name="email"/>
+                                <field name="telefono"/>
+                                <field name="sitio_web" widget="url"/>
+                            </group>
+                            <group>
+                                <field name="tipo_servicio"/>
+                                <field name="calificacion"/>
+                                <field name="activo"/>
+                                <field name="total_servicios" readonly="1"/>
+                                <field name="servicios_completados" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="direccion" widget="text"/>
+                        </group>
+                        <group>
+                            <field name="notas" widget="text"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_proveedor_servicio_tree" model="ir.ui.view">
+            <field name="name">proveedor.servicio.tree</field>
+            <field name="model">proveedor.servicio</field>
+            <field name="arch" type="xml">
+                <list string="Proveedores de Servicio">
+                    <field name="codigo"/>
+                    <field name="name"/>
+                    <field name="tipo_servicio"/>
+                    <field name="email"/>
+                    <field name="telefono"/>
+                    <field name="calificacion"/>
+                    <field name="total_servicios"/>
+                    <field name="servicios_completados"/>
+                    <field name="activo"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Plantilla Solicitud Views -->
+        <record id="view_plantilla_solicitud_form" model="ir.ui.view">
+            <field name="name">plantilla.solicitud.form</field>
+            <field name="model">plantilla.solicitud</field>
+            <field name="arch" type="xml">
+                <form string="Plantilla de Solicitud">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="category"/>
+                                <field name="subcategory"/>
+                                <field name="prioridad_id"/>
+                            </group>
+                            <group>
+                                <field name="departamento_id"/>
+                                <field name="gestor_id"/>
+                                <field name="activo"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="descripcion" widget="html"/>
+                        </group>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="crear_solicitud_desde_plantilla" type="object" string="Crear Solicitud" class="btn-primary"/>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_plantilla_solicitud_tree" model="ir.ui.view">
+            <field name="name">plantilla.solicitud.tree</field>
+            <field name="model">plantilla.solicitud</field>
+            <field name="arch" type="xml">
+                <list string="Plantillas de Solicitud">
+                    <field name="name"/>
+                    <field name="category"/>
+                    <field name="subcategory"/>
+                    <field name="prioridad_id"/>
+                    <field name="departamento_id"/>
+                    <field name="gestor_id"/>
+                    <field name="activo"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Historial Estado Views -->
+        <record id="view_historial_estado_solicitud_tree" model="ir.ui.view">
+            <field name="name">historial.estado.solicitud.tree</field>
+            <field name="model">historial.estado.solicitud</field>
+            <field name="arch" type="xml">
+                <list string="Historial de Estados" create="false" edit="false">
+                    <field name="solicitud_id"/>
+                    <field name="fecha_cambio"/>
+                    <field name="usuario_id"/>
+                    <field name="estado_anterior"/>
+                    <field name="estado_nuevo"/>
+                    <field name="tiempo_en_estado"/>
+                    <field name="comentario"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Comentario Solicitud Views -->
+        <record id="view_comentario_solicitud_form" model="ir.ui.view">
+            <field name="name">comentario.solicitud.form</field>
+            <field name="model">comentario.solicitud</field>
+            <field name="arch" type="xml">
+                <form string="Comentario">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="solicitud_id"/>
+                                <field name="usuario_id" readonly="1"/>
+                                <field name="fecha" readonly="1"/>
+                                <field name="tipo"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="comentario" widget="html"/>
+                        </group>
+                        <group>
+                            <field name="attachment_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="create_date"/>
+                                    <field name="file_size"/>
+                                </list>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_comentario_solicitud_tree" model="ir.ui.view">
+            <field name="name">comentario.solicitud.tree</field>
+            <field name="model">comentario.solicitud</field>
+            <field name="arch" type="xml">
+                <list string="Comentarios">
+                    <field name="solicitud_id"/>
+                    <field name="usuario_id"/>
+                    <field name="fecha"/>
+                    <field name="tipo"/>
+                    <field name="comentario"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Encuesta Satisfaccion Views -->
+        <record id="view_encuesta_satisfaccion_form" model="ir.ui.view">
+            <field name="name">encuesta.satisfaccion.form</field>
+            <field name="model">encuesta.satisfaccion</field>
+            <field name="arch" type="xml">
+                <form string="Encuesta de Satisfacción">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="solicitud_id"/>
+                                <field name="usuario_id" readonly="1"/>
+                                <field name="fecha" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="puntuacion_general"/>
+                                <field name="puntuacion_tiempo"/>
+                                <field name="puntuacion_calidad"/>
+                                <field name="puntuacion_promedio" readonly="1"/>
+                                <field name="recomendaria"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="comentario" widget="text"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_encuesta_satisfaccion_tree" model="ir.ui.view">
+            <field name="name">encuesta.satisfaccion.tree</field>
+            <field name="model">encuesta.satisfaccion</field>
+            <field name="arch" type="xml">
+                <list string="Encuestas de Satisfacción">
+                    <field name="solicitud_id"/>
+                    <field name="usuario_id"/>
+                    <field name="fecha"/>
+                    <field name="puntuacion_general"/>
+                    <field name="puntuacion_tiempo"/>
+                    <field name="puntuacion_calidad"/>
+                    <field name="puntuacion_promedio"/>
+                    <field name="recomendaria"/>
+                </list>
+            </field>
+        </record>
+    </data>
+</odoo>

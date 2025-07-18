@@ -1,17 +1,193 @@
 <odoo>
     <data>
+        <!-- Action Windows -->
         <record id="action_solicitud_interna" model="ir.actions.act_window">
-            <field name="name">Solicitudes Internas</field>
+            <field name="name">Tickets de Solicitudes</field>
             <field name="res_model">solicitud.interna</field>
-            <field name="view_mode">list,form</field>
+            <field name="view_mode">kanban,list,form,calendar,pivot,graph</field>
+            <field name="context">{'search_default_pendientes': 1}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
-                    Crea tu primera solicitud interna
+                    Crear un nuevo ticket de solicitud
+                </p>
+                <p>
+                    Los tickets te permiten gestionar solicitudes internas de manera organizada.
+                    Puedes crear solicitudes de diferentes categorías como material, mantenimiento, soporte técnico, etc.
                 </p>
             </field>
         </record>
-        <menuitem id="menu_solicitud_interna_root" name="Solicitudes Internas" sequence="10" />
-        <menuitem id="menu_solicitud_interna" name="Solicitudes"
-            parent="menu_solicitud_interna_root" action="solicitud_interna.action_solicitud_interna" />
+
+        <record id="action_mis_tickets" model="ir.actions.act_window">
+            <field name="name">Mis Tickets</field>
+            <field name="res_model">solicitud.interna</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="domain">[('solicitante_id', '=', uid)]</field>
+            <field name="context">{'default_solicitante_id': uid}</field>
+        </record>
+
+        <record id="action_tickets_asignados" model="ir.actions.act_window">
+            <field name="name">Tickets Asignados</field>
+        <field name="res_model">solicitud.interna</field>
+        <field name="view_mode">kanban,list,form</field>
+            <field name="domain">[('gestor_id', '=', uid)]</field>
+            <field name="context">{'search_default_pendientes': 1}</field>
+        </record>
+
+        <record id="action_tickets_vencidos" model="ir.actions.act_window">
+            <field name="name">Tickets Vencidos</field>
+            <field name="res_model">solicitud.interna</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[('esta_vencido', '=', True)]</field>
+        </record>
+
+        <!-- Configuración Actions -->
+        <record id="action_departamento_solicitud" model="ir.actions.act_window">
+            <field name="name">Departamentos</field>
+            <field name="res_model">departamento.solicitud</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <record id="action_prioridad_solicitud" model="ir.actions.act_window">
+            <field name="name">Prioridades</field>
+            <field name="res_model">prioridad.solicitud</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <record id="action_tipo_material" model="ir.actions.act_window">
+            <field name="name">Tipos de Material</field>
+            <field name="res_model">tipo.material</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <record id="action_proveedor_servicio" model="ir.actions.act_window">
+            <field name="name">Proveedores de Servicio</field>
+            <field name="res_model">proveedor.servicio</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <record id="action_plantilla_solicitud" model="ir.actions.act_window">
+            <field name="name">Plantillas de Solicitud</field>
+            <field name="res_model">plantilla.solicitud</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- Reportes Actions -->
+        <record id="action_historial_estado" model="ir.actions.act_window">
+            <field name="name">Historial de Estados</field>
+            <field name="res_model">historial.estado.solicitud</field>
+            <field name="view_mode">list</field>
+        </record>
+
+        <record id="action_comentarios_solicitud" model="ir.actions.act_window">
+            <field name="name">Comentarios</field>
+            <field name="res_model">comentario.solicitud</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <record id="action_encuestas_satisfaccion" model="ir.actions.act_window">
+            <field name="name">Encuestas de Satisfacción</field>
+            <field name="res_model">encuesta.satisfaccion</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- Root Menu -->
+        <menuitem id="menu_solicitud_interna_root"
+                  name="Sistema de Tickets"
+                  web_icon="solicitud_interna,static/description/icon.png"
+                  sequence="10" />
+
+        <!-- Tickets Menu -->
+        <menuitem id="menu_tickets"
+                  name="Tickets"
+                  parent="menu_solicitud_interna_root"
+                  sequence="10" />
+
+        <menuitem id="menu_solicitud_interna"
+                  name="Todos los Tickets"
+                  parent="menu_tickets"
+                  action="action_solicitud_interna"
+                  sequence="10" />
+
+        <menuitem id="menu_mis_tickets"
+                  name="Mis Tickets"
+                  parent="menu_tickets"
+                  action="action_mis_tickets"
+                  sequence="20" />
+
+        <menuitem id="menu_tickets_asignados"
+                  name="Tickets Asignados"
+                  parent="menu_tickets"
+                  action="action_tickets_asignados"
+                  groups="solicitud_interna.group_gestor"
+                  sequence="30" />
+
+        <menuitem id="menu_tickets_vencidos"
+                  name="Tickets Vencidos"
+                  parent="menu_tickets"
+                  action="action_tickets_vencidos"
+                  groups="solicitud_interna.group_gestor"
+                  sequence="40" />
+
+        <menuitem id="menu_plantillas"
+                  name="Plantillas"
+                  parent="menu_tickets"
+                  action="action_plantilla_solicitud"
+                  sequence="50" />
+
+        <!-- Configuración Menu -->
+        <menuitem id="menu_configuracion"
+                  name="Configuración"
+                  parent="menu_solicitud_interna_root"
+                  groups="solicitud_interna.group_gestor"
+                  sequence="20" />
+
+        <menuitem id="menu_departamentos"
+                  name="Departamentos"
+                  parent="menu_configuracion"
+                  action="action_departamento_solicitud"
+                  sequence="10" />
+
+        <menuitem id="menu_prioridades"
+                  name="Prioridades"
+                  parent="menu_configuracion"
+                  action="action_prioridad_solicitud"
+                  sequence="20" />
+
+        <menuitem id="menu_tipos_material"
+                  name="Tipos de Material"
+                  parent="menu_configuracion"
+                  action="action_tipo_material"
+                  sequence="30" />
+
+        <menuitem id="menu_proveedores"
+                  name="Proveedores"
+                  parent="menu_configuracion"
+                  action="action_proveedor_servicio"
+                  sequence="40" />
+
+        <!-- Reportes Menu -->
+        <menuitem id="menu_reportes"
+                  name="Reportes"
+                  parent="menu_solicitud_interna_root"
+                  groups="solicitud_interna.group_gestor"
+                  sequence="30" />
+
+        <menuitem id="menu_historial_estados"
+                  name="Historial de Estados"
+                  parent="menu_reportes"
+                  action="action_historial_estado"
+                  sequence="10" />
+
+        <menuitem id="menu_comentarios"
+                  name="Comentarios"
+                  parent="menu_reportes"
+                  action="action_comentarios_solicitud"
+                  sequence="20" />
+
+        <menuitem id="menu_encuestas"
+                  name="Encuestas de Satisfacción"
+                  parent="menu_reportes"
+                  action="action_encuestas_satisfaccion"
+                  sequence="30" />
     </data>
 </odoo>

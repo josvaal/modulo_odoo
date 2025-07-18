@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="ticketGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#357ABD;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="paperGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F5F5F5;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="64" cy="64" r="60" fill="url(#ticketGradient)" stroke="#2C5282" stroke-width="2"/>
+  
+  <!-- Ticket/Document Icon -->
+  <rect x="32" y="24" width="64" height="80" rx="4" ry="4" fill="url(#paperGradient)" stroke="#E2E8F0" stroke-width="1"/>
+  
+  <!-- Header Line -->
+  <rect x="40" y="32" width="48" height="3" rx="1.5" fill="#4A90E2"/>
+  
+  <!-- Content Lines -->
+  <rect x="40" y="42" width="40" height="2" rx="1" fill="#A0AEC0"/>
+  <rect x="40" y="48" width="36" height="2" rx="1" fill="#A0AEC0"/>
+  <rect x="40" y="54" width="42" height="2" rx="1" fill="#A0AEC0"/>
+  <rect x="40" y="60" width="32" height="2" rx="1" fill="#A0AEC0"/>
+  
+  <!-- Priority Indicator -->
+  <circle cx="84" cy="36" r="4" fill="#F56565"/>
+  <circle cx="84" cy="36" r="2" fill="#FFFFFF"/>
+  
+  <!-- Status Checkmark -->
+  <circle cx="44" cy="76" r="8" fill="#48BB78" stroke="#FFFFFF" stroke-width="2"/>
+  <path d="M40 76 L43 79 L48 73" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Gear Icon (for system) -->
+  <g transform="translate(68, 72) scale(0.8)">
+    <circle cx="8" cy="8" r="3" fill="#FFFFFF" stroke="#4A90E2" stroke-width="1"/>
+    <path d="M8 1 L9 3 L11 2 L10 4 L12 5 L10 6 L11 8 L9 7 L8 9 L7 7 L5 8 L6 6 L4 5 L6 4 L5 2 L7 3 Z" fill="#4A90E2"/>
+  </g>
+  
+  <!-- Corner Decorations -->
+  <circle cx="20" cy="20" r="2" fill="#FFFFFF" opacity="0.3"/>
+  <circle cx="108" cy="20" r="2" fill="#FFFFFF" opacity="0.3"/>
+  <circle cx="20" cy="108" r="2" fill="#FFFFFF" opacity="0.3"/>
+  <circle cx="108" cy="108" r="2" fill="#FFFFFF" opacity="0.3"/>
+</svg>

@@ -1,0 +1,49 @@
+<odoo>
+    <data noupdate="1">
+        <!-- Prioridades predeterminadas -->
+        <record id="prioridad_muy_baja" model="prioridad.solicitud">
+            <field name="name">Muy Baja</field>
+            <field name="nivel">1</field>
+            <field name="descripcion">Solicitudes que pueden esperar sin afectar operaciones</field>
+            <field name="color">10</field>
+            <field name="tiempo_respuesta_horas">168</field> <!-- 7 días -->
+            <field name="activo" eval="True"/>
+        </record>
+
+        <record id="prioridad_baja" model="prioridad.solicitud">
+            <field name="name">Baja</field>
+            <field name="nivel">2</field>
+            <field name="descripcion">Solicitudes rutinarias sin urgencia</field>
+            <field name="color">3</field>
+            <field name="tiempo_respuesta_horas">72</field> <!-- 3 días -->
+            <field name="activo" eval="True"/>
+        </record>
+
+        <record id="prioridad_media" model="prioridad.solicitud">
+            <field name="name">Media</field>
+            <field name="nivel">3</field>
+            <field name="descripcion">Solicitudes importantes que requieren atención oportuna</field>
+            <field name="color">2</field>
+            <field name="tiempo_respuesta_horas">24</field> <!-- 1 día -->
+            <field name="activo" eval="True"/>
+        </record>
+
+        <record id="prioridad_alta" model="prioridad.solicitud">
+            <field name="name">Alta</field>
+            <field name="nivel">4</field>
+            <field name="descripcion">Solicitudes urgentes que afectan operaciones</field>
+            <field name="color">5</field>
+            <field name="tiempo_respuesta_horas">8</field> <!-- 8 horas -->
+            <field name="activo" eval="True"/>
+        </record>
+
+        <record id="prioridad_critica" model="prioridad.solicitud">
+            <field name="name">Crítica</field>
+            <field name="nivel">5</field>
+            <field name="descripcion">Solicitudes críticas que requieren atención inmediata</field>
+            <field name="color">1</field>
+            <field name="tiempo_respuesta_horas">2</field> <!-- 2 horas -->
+            <field name="activo" eval="True"/>
+        </record>
+    </data>
+</odoo>

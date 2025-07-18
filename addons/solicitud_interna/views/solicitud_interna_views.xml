@@ -1,37 +1,135 @@
 <odoo>
     <data>
+        <!-- Sequence for ticket numbers -->
+        <record id="seq_solicitud_interna" model="ir.sequence">
+            <field name="name">Solicitud Interna</field>
+            <field name="code">solicitud.interna</field>
+            <field name="prefix">TK</field>
+            <field name="padding">5</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+
         <!-- Form View -->
         <record id="view_solicitud_interna_form" model="ir.ui.view">
             <field name="name">solicitud.interna.form</field>
             <field name="model">solicitud.interna</field>
             <field name="arch" type="xml">
-                <form string="Solicitud Interna">
+                <form string="Ticket de Solicitud">
+                    <header>
+                        <button name="action_enviar" type="object" string="Enviar" 
+                                class="btn-primary" invisible="state != 'borrador'"/>
+                        <button name="action_asignar" type="object" string="Asignar" 
+                                class="btn-secondary" invisible="state not in ['pendiente']"
+                                groups="solicitud_interna.group_gestor"/>
+                        <button name="action_en_proceso" type="object" string="En Proceso" 
+                                class="btn-info" invisible="state not in ['asignado', 'pendiente']"
+                                groups="solicitud_interna.group_gestor"/>
+                        <button name="action_esperando_respuesta" type="object" string="Esperando Respuesta" 
+                                class="btn-warning" invisible="state != 'en_proceso'"
+                                groups="solicitud_interna.group_gestor"/>
+                        <button name="action_resolver" type="object" string="Resolver" 
+                                class="btn-success" invisible="state not in ['en_proceso', 'esperando_respuesta']"
+                                groups="solicitud_interna.group_gestor"/>
+                        <button name="action_cerrar" type="object" string="Cerrar" 
+                                class="btn-dark" invisible="state != 'resuelto'"/>
+                        <button name="action_cancelar" type="object" string="Cancelar" 
+                                class="btn-danger" invisible="state in ['cerrado', 'cancelado']"
+                                groups="solicitud_interna.group_gestor"/>
+                        <button name="action_reabrir" type="object" string="Reabrir" 
+                                class="btn-warning" invisible="state not in ['cerrado', 'cancelado']"
+                                groups="solicitud_interna.group_gestor"/>
+                        <field name="state" widget="statusbar" statusbar_visible="borrador,pendiente,asignado,en_proceso,resuelto,cerrado"/>
+                    </header>
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="object" name="toggle_active" icon="fa-archive">
+                                <field name="esta_vencido" widget="boolean"/>
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_text">Vencido</span>
+                                </div>
+                            </button>
+                        </div>
+                        
+                        <div class="oe_title">
+                            <h1>
+                                <field name="numero_ticket" readonly="1"/>
+                            </h1>
+                            <h2>
+                                <field name="name" placeholder="Título del ticket..."/>
+                            </h2>
+                        </div>
+                        
                         <group>
-                            <field name="name" />
-                            <field name="description" />
-                            <field name="category" />
-                            <field name="state" readonly="1" />
-                            <field name="fecha_solicitud" readonly="1" />
-                            <field name="solicitante_id" readonly="1" />
-                            <field name="gestor_id" />
-                            <field name="comentarios" />
+                            <group name="info_basica">
+                                <field name="category"/>
+                                <field name="subcategory"/>
+                                <field name="prioridad_id" options="{'color_field': 'color'}"/>
+                                <field name="departamento_id"/>
+                                <field name="tipo_material_id" invisible="category != 'material'"/>
+                                <field name="proveedor_id" invisible="category not in ['mantenimiento', 'soporte']"/>
+                            </group>
+                            <group name="fechas">
+                                <field name="fecha_solicitud" readonly="1"/>
+                                <field name="fecha_limite"/>
+                                <field name="fecha_asignacion" readonly="1" invisible="not fecha_asignacion"/>
+                                <field name="fecha_inicio" readonly="1" invisible="not fecha_inicio"/>
+                                <field name="fecha_resolucion" readonly="1" invisible="not fecha_resolucion"/>
+                                <field name="fecha_cierre" readonly="1" invisible="not fecha_cierre"/>
+                            </group>
                         </group>
-                        <button name="action_en_proceso"
-                            type="object"
-                            string="Marcar En Proceso"
-                            invisible="state != 'pendiente'"
-                            class="btn-primary" />
-                        <button name="action_completada"
-                            type="object"
-                            string="Marcar Completada"
-                            invisible="state != 'en_proceso'"
-                            class="btn-success" />
+                        
+                        <group>
+                            <group name="usuarios">
+                                <field name="solicitante_id" readonly="1"/>
+                                <field name="gestor_id"/>
+                                <field name="supervisor_id"/>
+                            </group>
+                            <group name="metricas">
+                                <field name="dias_pendiente" readonly="1"/>
+                                <field name="tiempo_resolucion" readonly="1" invisible="not tiempo_resolucion"/>
+                                <field name="costo_estimado"/>
+                                <field name="costo_real" invisible="state not in ['resuelto', 'cerrado']"/>
+                            </group>
+                        </group>
+                        
+                        <notebook>
+                            <page string="Descripción" name="descripcion">
+                                <field name="description" widget="html"/>
+                            </page>
+                            
+                            <page string="Solución" name="solucion" invisible="state in ['borrador', 'pendiente']">
+                                <field name="solucion" widget="html"/>
+                            </page>
+                            
+                            <page string="Comentarios" name="comentarios">
+                                <field name="comentario_ids"/>
+                            </page>
+                            
+                            <page string="Historial" name="historial">
+                                <field name="historial_estado_ids" readonly="1"/>
+                            </page>
+                            
+                            <page string="Adjuntos" name="adjuntos">
+                                <field name="attachment_ids"/>
+                            </page>
+                            
+                            <page string="Satisfacción" name="satisfaccion" invisible="state not in ['resuelto', 'cerrado']">
+                                <group>
+                                    <field name="puntuacion_satisfaccion"/>
+                                </group>
+                                <field name="encuesta_ids"/>
+                            </page>
+                            
+                            <page string="Comentarios Internos" name="comentarios_internos" groups="solicitud_interna.group_gestor">
+                                <field name="comentarios" widget="text"/>
+                            </page>
+                        </notebook>
                     </sheet>
                     <div class="oe_chatter">
-                        <field name="message_follower_ids" widget="mail_followers" />
-                        <field name="activity_ids" widget="mail_activity" />
-                        <field name="message_ids" widget="mail_thread" />
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
                     </div>
                 </form>
             </field>
@@ -42,14 +140,164 @@
             <field name="name">solicitud.interna.tree</field>
             <field name="model">solicitud.interna</field>
             <field name="arch" type="xml">
-                <list string="Solicitudes Internas">
-                    <field name="name" />
-                    <field name="category" />
-                    <field name="state" />
-                    <field name="fecha_solicitud" />
-                    <field name="solicitante_id" />
-                    <field name="gestor_id" />
+                <list string="Tickets de Solicitudes" decoration-danger="esta_vencido" decoration-success="state == 'resuelto'" decoration-muted="state in ['cerrado', 'cancelado']">
+                    <field name="numero_ticket"/>
+                    <field name="name"/>
+                    <field name="category"/>
+                    <field name="prioridad_id"/>
+                    <field name="state" decoration-bf="1"/>
+                    <field name="fecha_solicitud"/>
+                    <field name="fecha_limite"/>
+                    <field name="solicitante_id"/>
+                    <field name="gestor_id"/>
+                    <field name="departamento_id"/>
+                    <field name="dias_pendiente"/>
+                    <field name="esta_vencido" invisible="1"/>
                 </list>
+            </field>
+        </record>
+
+        <!-- Kanban View -->
+        <record id="view_solicitud_interna_kanban" model="ir.ui.view">
+            <field name="name">solicitud.interna.kanban</field>
+            <field name="model">solicitud.interna</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="state" class="o_kanban_small_column">
+                    <field name="numero_ticket"/>
+                    <field name="name"/>
+                    <field name="category"/>
+                    <field name="prioridad_id"/>
+                    <field name="state"/>
+                    <field name="solicitante_id"/>
+                    <field name="gestor_id"/>
+                    <field name="fecha_solicitud"/>
+                    <field name="fecha_limite"/>
+                    <field name="esta_vencido"/>
+                    <field name="color"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
+                                <div class="o_dropdown_kanban dropdown">
+                                    <a class="dropdown-toggle o-no-caret btn" data-toggle="dropdown" href="#" role="button" aria-label="Dropdown menu" title="Dropdown menu">
+                                        <span class="fa fa-ellipsis-v"/>
+                                    </a>
+                                    <div class="dropdown-menu" role="menu">
+                                        <a t-if="widget.editable" type="edit" class="dropdown-item">Editar</a>
+                                        <a t-if="widget.deletable" type="delete" class="dropdown-item">Eliminar</a>
+                                    </div>
+                                </div>
+                                <div class="oe_kanban_content">
+                                    <div class="o_kanban_record_top">
+                                        <div class="o_kanban_record_headings">
+                                            <strong class="o_kanban_record_title">
+                                                <field name="numero_ticket"/>
+                                            </strong>
+                                        </div>
+                                        <div class="o_kanban_record_top_right">
+                                            <div t-if="record.esta_vencido.raw_value" class="badge badge-danger">Vencido</div>
+                                            <div t-if="record.prioridad_id.raw_value" class="badge badge-info">
+                                                <field name="prioridad_id"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="o_kanban_record_body">
+                                        <field name="name"/>
+                                        <div class="text-muted">
+                                            <field name="category"/>
+                                        </div>
+                                    </div>
+                                    <div class="o_kanban_record_bottom">
+                                        <div class="oe_kanban_bottom_left">
+                                            <field name="solicitante_id" widget="many2one_avatar_user"/>
+                                        </div>
+                                        <div class="oe_kanban_bottom_right">
+                                            <field name="fecha_solicitud" widget="date"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="view_solicitud_interna_search" model="ir.ui.view">
+            <field name="name">solicitud.interna.search</field>
+            <field name="model">solicitud.interna</field>
+            <field name="arch" type="xml">
+                <search string="Buscar Tickets">
+                    <field name="numero_ticket"/>
+                    <field name="name"/>
+                    <field name="solicitante_id"/>
+                    <field name="gestor_id"/>
+                    <field name="departamento_id"/>
+                    <field name="category"/>
+                    <separator/>
+                    <filter string="Mis Tickets" name="mis_tickets" domain="[('solicitante_id', '=', uid)]"/>
+                    <filter string="Asignados a Mí" name="asignados_a_mi" domain="[('gestor_id', '=', uid)]"/>
+                    <separator/>
+                    <filter string="Pendientes" name="pendientes" domain="[('state', 'in', ['pendiente', 'asignado'])]"/>
+                    <filter string="En Proceso" name="en_proceso" domain="[('state', '=', 'en_proceso')]"/>
+                    <filter string="Resueltos" name="resueltos" domain="[('state', '=', 'resuelto')]"/>
+                    <filter string="Cerrados" name="cerrados" domain="[('state', '=', 'cerrado')]"/>
+                    <separator/>
+                    <filter string="Vencidos" name="vencidos" domain="[('esta_vencido', '=', True)]"/>
+                    <filter string="Alta Prioridad" name="alta_prioridad" domain="[('prioridad_id.nivel', '&gt;=', 4)]"/>
+                    <separator/>
+                    <filter string="Hoy" name="hoy" domain="[('fecha_solicitud', '&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0))), ('fecha_solicitud', '&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59)))]"/>
+                    <filter string="Esta Semana" name="esta_semana" domain="[('fecha_solicitud', '&gt;=', (context_today() - datetime.timedelta(days=context_today().weekday())).strftime('%Y-%m-%d')), ('fecha_solicitud', '&lt;=', (context_today() + datetime.timedelta(days=6-context_today().weekday())).strftime('%Y-%m-%d'))]"/>
+                    <filter string="Este Mes" name="este_mes" domain="[('fecha_solicitud', '&gt;=', datetime.datetime.now().strftime('%Y-%m-01')), ('fecha_solicitud', '&lt;=', (datetime.datetime.now().replace(day=1) + datetime.timedelta(days=32)).replace(day=1) - datetime.timedelta(days=1))]"/>
+                    <group expand="0" string="Agrupar Por">
+                        <filter string="Estado" name="group_state" context="{'group_by': 'state'}"/>
+                        <filter string="Categoría" name="group_category" context="{'group_by': 'category'}"/>
+                        <filter string="Prioridad" name="group_priority" context="{'group_by': 'prioridad_id'}"/>
+                        <filter string="Departamento" name="group_department" context="{'group_by': 'departamento_id'}"/>
+                        <filter string="Gestor" name="group_gestor" context="{'group_by': 'gestor_id'}"/>
+                        <filter string="Fecha de Solicitud" name="group_fecha" context="{'group_by': 'fecha_solicitud'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Calendar View -->
+        <record id="view_solicitud_interna_calendar" model="ir.ui.view">
+            <field name="name">solicitud.interna.calendar</field>
+            <field name="model">solicitud.interna</field>
+            <field name="arch" type="xml">
+                <calendar string="Calendario de Tickets" date_start="fecha_solicitud" date_stop="fecha_limite" color="prioridad_id" mode="month">
+                    <field name="numero_ticket"/>
+                    <field name="name"/>
+                    <field name="state"/>
+                    <field name="solicitante_id"/>
+                    <field name="gestor_id"/>
+                </calendar>
+            </field>
+        </record>
+
+        <!-- Pivot View -->
+        <record id="view_solicitud_interna_pivot" model="ir.ui.view">
+            <field name="name">solicitud.interna.pivot</field>
+            <field name="model">solicitud.interna</field>
+            <field name="arch" type="xml">
+                <pivot string="Análisis de Tickets">
+                    <field name="departamento_id" type="row"/>
+                    <field name="state" type="col"/>
+                    <field name="tiempo_resolucion" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <!-- Graph View -->
+        <record id="view_solicitud_interna_graph" model="ir.ui.view">
+            <field name="name">solicitud.interna.graph</field>
+            <field name="model">solicitud.interna</field>
+            <field name="arch" type="xml">
+                <graph string="Gráfico de Tickets" type="bar">
+                    <field name="state"/>
+                    <field name="tiempo_resolucion" type="measure"/>
+                </graph>
             </field>
         </record>
     </data>

@@ -1,0 +1,209 @@
+<odoo>
+    <data>
+        <!-- Tipos de Material de Demo -->
+        <record id="tipo_material_papeleria" model="tipo.material">
+            <field name="name">Papelería</field>
+            <field name="codigo">PAP</field>
+            <field name="categoria">papeleria</field>
+            <field name="descripcion">Materiales de papelería y oficina</field>
+            <field name="stock_minimo">50</field>
+            <field name="precio_unitario">2.50</field>
+            <field name="activo" eval="True"/>
+        </record>
+
+        <record id="tipo_material_informatico" model="tipo.material">
+            <field name="name">Equipo Informático</field>
+            <field name="codigo">INF</field>
+            <field name="categoria">tecnologia</field>
+            <field name="descripcion">Equipos y accesorios informáticos</field>
+            <field name="stock_minimo">10</field>
+            <field name="precio_unitario">500.00</field>
+            <field name="activo" eval="True"/>
+        </record>
+
+        <record id="tipo_material_limpieza" model="tipo.material">
+            <field name="name">Productos de Limpieza</field>
+            <field name="codigo">LIM</field>
+            <field name="categoria">limpieza</field>
+            <field name="descripcion">Productos y materiales de limpieza</field>
+            <field name="stock_minimo">25</field>
+            <field name="precio_unitario">15.00</field>
+            <field name="activo" eval="True"/>
+        </record>
+
+        <!-- Proveedores de Demo -->
+        <record id="proveedor_papeleria_central" model="proveedor.servicio">
+            <field name="name">Papelería Central S.A.</field>
+            <field name="codigo">PC001</field>
+            <field name="email">ventas@papeleriacentral.com</field>
+            <field name="telefono">+1-555-0123</field>
+            <field name="direccion">Av. Principal 123, Ciudad</field>
+            <field name="sitio_web">https://www.papeleriacentral.com</field>
+            <field name="tipo_servicio">papeleria</field>
+            <field name="calificacion">4</field>
+            <field name="activo" eval="True"/>
+            <field name="notas">Proveedor confiable de materiales de oficina</field>
+        </record>
+
+        <record id="proveedor_tech_solutions" model="proveedor.servicio">
+            <field name="name">Tech Solutions Ltd.</field>
+            <field name="codigo">TS001</field>
+            <field name="email">soporte@techsolutions.com</field>
+            <field name="telefono">+1-555-0456</field>
+            <field name="direccion">Torre Empresarial, Piso 15</field>
+            <field name="sitio_web">https://www.techsolutions.com</field>
+            <field name="tipo_servicio">tecnologia</field>
+            <field name="calificacion">5</field>
+            <field name="activo" eval="True"/>
+            <field name="notas">Especialistas en soporte técnico y mantenimiento IT</field>
+        </record>
+
+        <record id="proveedor_mantenimiento_integral" model="proveedor.servicio">
+            <field name="name">Mantenimiento Integral S.L.</field>
+            <field name="codigo">MI001</field>
+            <field name="email">servicios@mantenimientointegral.com</field>
+            <field name="telefono">+1-555-0789</field>
+            <field name="direccion">Zona Industrial, Nave 5</field>
+            <field name="sitio_web">https://www.mantenimientointegral.com</field>
+            <field name="tipo_servicio">mantenimiento</field>
+            <field name="calificacion">4</field>
+            <field name="activo" eval="True"/>
+            <field name="notas">Servicios de mantenimiento preventivo y correctivo</field>
+        </record>
+
+        <!-- Plantillas de Solicitud de Demo -->
+        <record id="plantilla_solicitud_material_oficina" model="plantilla.solicitud">
+            <field name="name">Solicitud de Material de Oficina</field>
+            <field name="category">material</field>
+            <field name="subcategory">papeleria</field>
+            <field name="descripcion">&lt;p&gt;Solicitud estándar para material de oficina&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Información requerida:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Tipo de material necesario&lt;/li&gt;
+&lt;li&gt;Cantidad requerida&lt;/li&gt;
+&lt;li&gt;Fecha límite de entrega&lt;/li&gt;
+&lt;li&gt;Justificación de la necesidad&lt;/li&gt;
+&lt;/ul&gt;</field>
+            <field name="prioridad_id" ref="prioridad_baja"/>
+            <field name="departamento_id" ref="departamento_administracion"/>
+            <field name="activo" eval="True"/>
+        </record>
+
+        <record id="plantilla_soporte_tecnico" model="plantilla.solicitud">
+            <field name="name">Solicitud de Soporte Técnico</field>
+            <field name="category">soporte</field>
+            <field name="subcategory">hardware</field>
+            <field name="descripcion">&lt;p&gt;Solicitud para soporte técnico en equipos informáticos&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Información requerida:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Descripción detallada del problema&lt;/li&gt;
+&lt;li&gt;Equipo afectado (marca, modelo, número de serie)&lt;/li&gt;
+&lt;li&gt;Pasos realizados para intentar solucionar&lt;/li&gt;
+&lt;li&gt;Urgencia del problema&lt;/li&gt;
+&lt;/ul&gt;</field>
+            <field name="prioridad_id" ref="prioridad_media"/>
+            <field name="departamento_id" ref="departamento_it"/>
+            <field name="activo" eval="True"/>
+        </record>
+
+        <record id="plantilla_mantenimiento_preventivo" model="plantilla.solicitud">
+            <field name="name">Solicitud de Mantenimiento Preventivo</field>
+            <field name="category">mantenimiento</field>
+            <field name="subcategory">preventivo</field>
+            <field name="descripcion">&lt;p&gt;Solicitud para mantenimiento preventivo de equipos&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Información requerida:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Equipo o área a mantener&lt;/li&gt;
+&lt;li&gt;Tipo de mantenimiento requerido&lt;/li&gt;
+&lt;li&gt;Frecuencia sugerida&lt;/li&gt;
+&lt;li&gt;Fecha preferida para el mantenimiento&lt;/li&gt;
+&lt;/ul&gt;</field>
+            <field name="prioridad_id" ref="prioridad_baja"/>
+            <field name="departamento_id" ref="departamento_mantenimiento"/>
+            <field name="activo" eval="True"/>
+        </record>
+
+        <!-- Solicitudes de Demo -->
+        <record id="demo_solicitud_1" model="solicitud.interna">
+            <field name="name">Solicitud de Papel y Bolígrafos</field>
+            <field name="description">&lt;p&gt;Necesitamos reponer el stock de papel A4 y bolígrafos para el departamento de administración.&lt;/p&gt;
+&lt;p&gt;Cantidad requerida:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Papel A4: 10 resmas&lt;/li&gt;
+&lt;li&gt;Bolígrafos azules: 50 unidades&lt;/li&gt;
+&lt;li&gt;Bolígrafos negros: 30 unidades&lt;/li&gt;
+&lt;/ul&gt;</field>
+            <field name="category">material</field>
+            <field name="subcategory">papeleria</field>
+            <field name="state">pendiente</field>
+            <field name="fecha_solicitud" eval="(DateTime.now() - timedelta(days=2))"/>
+            <field name="fecha_limite" eval="(DateTime.now() + timedelta(days=5))"/>
+            <field name="solicitante_id" ref="base.user_admin"/>
+            <field name="departamento_id" ref="departamento_administracion"/>
+            <field name="prioridad_id" ref="prioridad_baja"/>
+            <field name="tipo_material_id" ref="tipo_material_papeleria"/>
+            <field name="costo_estimado">150.00</field>
+        </record>
+
+        <record id="demo_solicitud_2" model="solicitud.interna">
+            <field name="name">Problema con Impresora HP LaserJet</field>
+            <field name="description">&lt;p&gt;La impresora HP LaserJet del departamento de contabilidad no está funcionando correctamente.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Síntomas:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;No imprime documentos&lt;/li&gt;
+&lt;li&gt;Luz de error parpadeando&lt;/li&gt;
+&lt;li&gt;Mensaje de error en pantalla&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Se requiere revisión técnica urgente.&lt;/p&gt;</field>
+            <field name="category">soporte</field>
+            <field name="subcategory">hardware</field>
+            <field name="state">en_proceso</field>
+            <field name="fecha_solicitud" eval="(DateTime.now() - timedelta(days=1))"/>
+            <field name="fecha_limite" eval="(DateTime.now() + timedelta(days=2))"/>
+            <field name="fecha_asignacion" eval="(DateTime.now() - timedelta(hours=8))"/>
+            <field name="fecha_inicio" eval="(DateTime.now() - timedelta(hours=6))"/>
+            <field name="solicitante_id" ref="base.user_admin"/>
+            <field name="departamento_id" ref="departamento_contabilidad"/>
+            <field name="prioridad_id" ref="prioridad_alta"/>
+            <field name="proveedor_id" ref="proveedor_tech_solutions"/>
+            <field name="costo_estimado">200.00</field>
+        </record>
+
+        <record id="demo_solicitud_3" model="solicitud.interna">
+            <field name="name">Mantenimiento Sistema de Aire Acondicionado</field>
+            <field name="description">&lt;p&gt;Se requiere mantenimiento preventivo del sistema de aire acondicionado de la planta de producción.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Actividades requeridas:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Limpieza de filtros&lt;/li&gt;
+&lt;li&gt;Revisión de refrigerante&lt;/li&gt;
+&lt;li&gt;Inspección de componentes eléctricos&lt;/li&gt;
+&lt;li&gt;Calibración de termostatos&lt;/li&gt;
+&lt;/ul&gt;</field>
+            <field name="category">mantenimiento</field>
+            <field name="subcategory">preventivo</field>
+            <field name="state">resuelto</field>
+            <field name="fecha_solicitud" eval="(DateTime.now() - timedelta(days=7))"/>
+            <field name="fecha_limite" eval="(DateTime.now() - timedelta(days=2))"/>
+            <field name="fecha_asignacion" eval="(DateTime.now() - timedelta(days=6))"/>
+            <field name="fecha_inicio" eval="(DateTime.now() - timedelta(days=5))"/>
+            <field name="fecha_resolucion" eval="(DateTime.now() - timedelta(days=1))"/>
+            <field name="solicitante_id" ref="base.user_admin"/>
+            <field name="departamento_id" ref="departamento_produccion"/>
+            <field name="prioridad_id" ref="prioridad_media"/>
+            <field name="proveedor_id" ref="proveedor_mantenimiento_integral"/>
+            <field name="costo_estimado">800.00</field>
+            <field name="costo_real">750.00</field>
+            <field name="solucion">&lt;p&gt;Se realizó el mantenimiento preventivo completo del sistema de aire acondicionado.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Actividades realizadas:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;✓ Limpieza completa de filtros&lt;/li&gt;
+&lt;li&gt;✓ Recarga de refrigerante R-410A&lt;/li&gt;
+&lt;li&gt;✓ Revisión y ajuste de componentes eléctricos&lt;/li&gt;
+&lt;li&gt;✓ Calibración de termostatos&lt;/li&gt;
+&lt;li&gt;✓ Pruebas de funcionamiento&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;El sistema está funcionando óptimamente. Próximo mantenimiento recomendado en 6 meses.&lt;/p&gt;</field>
+            <field name="puntuacion_satisfaccion">5</field>
+        </record>
+    </data>
+</odoo>
