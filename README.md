@@ -180,47 +180,223 @@ La configuración se encuentra en el archivo `docker-compose.yaml` y se aplica a
 Una vez instalado, deberías ver en el menú principal:
 - **Solicitudes Internas** (nuevo menú)
 
-## 📱 Uso del Sistema
+## 📱 Guía de Uso para Usuario Final
 
-### Menú Principal: Solicitudes Internas
+### 🏠 Navegación Principal
 
-El módulo agrega un nuevo menú con las siguientes opciones:
+Una vez que ingreses al sistema, verás el menú principal de Odoo. Busca y haz clic en **"Solicitudes Internas"** para acceder al sistema de tickets.
 
-#### 📋 Gestión de Tickets
-- **Mis Solicitudes**: Ver y gestionar tus propias solicitudes
-- **Todas las Solicitudes**: Ver todas las solicitudes (para gestores)
-- **Crear Solicitud**: Crear una nueva solicitud
-- **Plantillas**: Gestionar plantillas de solicitudes
+### 📋 Panel de Control - Mis Solicitudes
 
-#### 📊 Reportes y Análisis
-- **Dashboard**: Panel de control con métricas
-- **Reportes**: Informes detallados
-- **Encuestas de Satisfacción**: Resultados de encuestas
+Al entrar al módulo, la primera pantalla que verás es **"Mis Solicitudes"**, donde puedes:
 
-#### ⚙️ Configuración
-- **Departamentos**: Gestionar departamentos
-- **Prioridades**: Configurar niveles de prioridad
-- **Tipos de Material**: Catálogo de materiales
-- **Proveedores**: Gestionar proveedores de servicios
+- 📊 **Ver el resumen** de todas tus solicitudes
+- 🔍 **Filtrar** por estado (Pendiente, En Proceso, Resuelto, etc.)
+- 📅 **Ordenar** por fecha, prioridad o estado
+- 👁️ **Ver detalles** haciendo clic en cualquier solicitud
 
-### Flujo de Trabajo Típico
+### ➕ Cómo Crear una Nueva Solicitud
 
-1. **Crear Solicitud**:
-   - Ir a "Crear Solicitud"
-   - Llenar el formulario con título, descripción, categoría
-   - Seleccionar prioridad y departamento
-   - Guardar
+#### Paso 1: Acceder al Formulario
+1. Haz clic en el botón **"Crear"** (generalmente en la esquina superior izquierda)
+2. Se abrirá el formulario de nueva solicitud
 
-2. **Seguimiento**:
-   - La solicitud pasa por estados: Pendiente → Asignado → En Proceso → Resuelto → Cerrado
-   - Se pueden agregar comentarios y adjuntos
-   - Se registra historial completo de cambios
+#### Paso 2: Llenar la Información Básica
+**Campos Obligatorios:**
+- **📝 Título**: Escribe un título claro y descriptivo
+  - ✅ Ejemplo bueno: "Solicitud de papel para impresora oficina 3"
+  - ❌ Ejemplo malo: "Necesito algo"
 
-3. **Resolución**:
-   - El gestor asignado trabaja en la solicitud
-   - Se documenta la solución aplicada
-   - Se cierra el ticket
-   - Opcionalmente se solicita encuesta de satisfacción
+- **📄 Descripción**: Explica detalladamente tu solicitud
+  - Incluye: ¿Qué necesitas? ¿Para cuándo? ¿Cantidad? ¿Ubicación?
+  - Ejemplo: "Necesito 5 resmas de papel tamaño carta para la impresora de la oficina 3, segundo piso. Es urgente porque se nos acabó y tenemos que imprimir reportes para la reunión del viernes."
+
+- **🏷️ Categoría**: Selecciona la categoría que mejor describa tu solicitud:
+  - 📎 **Material de Oficina**: Papel, bolígrafos, carpetas, etc.
+  - 🔧 **Soporte Técnico**: Problemas con computadora, impresora, software
+  - 🛠️ **Mantenimiento**: Reparaciones, limpieza, instalaciones
+  - 📋 **Permisos**: Solicitudes de autorización o permisos especiales
+  - 👥 **Recursos Humanos**: Vacaciones, capacitaciones, documentos
+  - 💰 **Finanzas**: Reembolsos, pagos, presupuestos
+  - 💻 **Tecnología**: Software nuevo, accesos, equipos
+  - 📦 **Otros**: Cualquier otra solicitud
+
+- **🏢 Departamento**: Selecciona tu departamento
+- **⚡ Prioridad**: Elige el nivel de urgencia:
+  - 🟢 **Baja**: No es urgente, puede esperar semanas
+  - 🟡 **Media**: Importante, necesario en unos días
+  - 🟠 **Alta**: Urgente, necesario pronto
+  - 🔴 **Urgente**: Muy urgente, necesario hoy o mañana
+  - 🚨 **Crítica**: Emergencia, bloquea el trabajo
+
+#### Paso 3: Información Adicional (Opcional)
+- **📅 Fecha Límite**: Si tienes una fecha específica cuando lo necesitas
+- **💵 Costo Estimado**: Si conoces el costo aproximado
+- **📎 Adjuntos**: Puedes subir imágenes, documentos o archivos relacionados
+
+#### Paso 4: Guardar la Solicitud
+1. Haz clic en **"Guardar"**
+2. Tu solicitud se creará con un número único (ej: SOL-2024-001)
+3. Recibirás una notificación de confirmación
+
+### 📊 Estados de las Solicitudes - ¿Qué Significan?
+
+Tus solicitudes pasarán por diferentes estados. Aquí te explicamos cada uno:
+
+- **📝 Borrador**: Solicitud que estás creando pero aún no has enviado
+- **⏳ Pendiente**: Solicitud enviada, esperando ser asignada a un gestor
+- **👤 Asignado**: Ya tiene un gestor responsable que se encargará
+- **⚙️ En Proceso**: El gestor está trabajando en tu solicitud
+- **💬 Esperando Respuesta**: Necesitan más información de tu parte
+- **✅ Resuelto**: La solicitud está completa, esperando tu confirmación
+- **🔒 Cerrado**: Solicitud completamente terminada
+- **❌ Cancelado**: Solicitud cancelada por algún motivo
+
+### 🔍 Cómo Hacer Seguimiento a tus Solicitudes
+
+#### Ver el Estado Actual
+1. Ve a **"Mis Solicitudes"**
+2. Busca tu solicitud en la lista
+3. El estado actual aparece en una etiqueta de color
+
+#### Ver Detalles Completos
+1. Haz clic en el **título** de tu solicitud
+2. Se abrirá la vista detallada donde puedes ver:
+   - 📋 Toda la información de la solicitud
+   - 📝 Historial de cambios
+   - 💬 Comentarios del gestor
+   - 📎 Archivos adjuntos
+   - ⏱️ Tiempos de respuesta
+
+#### Agregar Comentarios
+1. En la vista detallada, busca la sección **"Comentarios"**
+2. Escribe tu comentario en el campo de texto
+3. Haz clic en **"Enviar"**
+4. El gestor recibirá una notificación
+
+### 💬 Comunicación con el Gestor
+
+#### Cuándo Comentar:
+- ✅ Para proporcionar información adicional
+- ✅ Para aclarar dudas
+- ✅ Para cambiar algún detalle de la solicitud
+- ✅ Para preguntar sobre el progreso
+- ✅ Para agradecer cuando se resuelva
+
+#### Cómo Escribir Buenos Comentarios:
+- 📝 Sé claro y específico
+- 📅 Menciona fechas si son importantes
+- 📍 Incluye ubicaciones si es relevante
+- 🙏 Mantén un tono profesional y amable
+
+**Ejemplo de buen comentario:**
+"Hola, quería agregar que necesito el papel antes del jueves porque tenemos una presentación importante. Si no es posible, por favor avísame para buscar alternativas. ¡Gracias!"
+
+### 📎 Cómo Subir Archivos Adjuntos
+
+1. En el formulario de solicitud o en los comentarios
+2. Busca el botón **"Adjuntar Archivo"** o el ícono 📎
+3. Haz clic y selecciona el archivo desde tu computadora
+4. Espera a que se suba completamente
+5. El archivo aparecerá en la lista de adjuntos
+
+**Tipos de archivos útiles:**
+- 📷 Fotos del problema (para soporte técnico)
+- 📄 Documentos de referencia
+- 📊 Cotizaciones o presupuestos
+- 🖼️ Capturas de pantalla
+
+### 🔔 Notificaciones - Mantente Informado
+
+Recibirás notificaciones automáticas cuando:
+- ✅ Tu solicitud sea asignada a un gestor
+- 💬 El gestor agregue comentarios
+- 🔄 Cambie el estado de tu solicitud
+- ✅ Tu solicitud sea resuelta
+- 📋 Se requiera tu feedback
+
+### 📊 Vista Kanban - Visualización por Estados
+
+1. En **"Mis Solicitudes"**, cambia a vista **"Kanban"**
+2. Verás columnas por cada estado
+3. Tus solicitudes aparecen como tarjetas
+4. Puedes arrastrar y soltar para cambiar estados (si tienes permisos)
+
+### 🎯 Plantillas - Solicitudes Rápidas
+
+Si haces solicitudes similares frecuentemente:
+
+1. Ve a **"Plantillas"** en el menú
+2. Busca plantillas predefinidas para tu tipo de solicitud
+3. Haz clic en **"Usar Plantilla"**
+4. Se creará una solicitud con información prellenada
+5. Solo modifica lo que necesites y guarda
+
+### 📈 Dashboard - Tu Resumen Personal
+
+En el **Dashboard** puedes ver:
+- 📊 Gráficos de tus solicitudes por estado
+- 📅 Solicitudes recientes
+- ⏱️ Tiempos promedio de resolución
+- 🎯 Estadísticas de satisfacción
+
+### ⭐ Encuesta de Satisfacción
+
+Cuando tu solicitud se resuelva:
+
+1. Recibirás una invitación para evaluar el servicio
+2. Califica del 1 al 5:
+   - 🌟 Satisfacción general
+   - ⏱️ Tiempo de respuesta
+   - 🎯 Calidad del servicio
+3. Agrega comentarios opcionales
+4. Tu feedback ayuda a mejorar el servicio
+
+### 🆘 ¿Necesitas Ayuda?
+
+#### Si tu solicitud está tomando mucho tiempo:
+1. Revisa el estado actual
+2. Agrega un comentario preguntando por el progreso
+3. Si es urgente, menciona la fecha límite
+
+#### Si necesitas cambiar algo en tu solicitud:
+1. Agrega un comentario explicando el cambio
+2. Si es un cambio mayor, considera crear una nueva solicitud
+
+#### Si no encuentras tu solicitud:
+1. Usa los filtros en **"Mis Solicitudes"**
+2. Busca por número de ticket o título
+3. Revisa si está en estado "Borrador"
+
+### 💡 Consejos para Mejores Resultados
+
+#### ✅ Buenas Prácticas:
+- 📝 Sé específico en títulos y descripciones
+- 📅 Proporciona fechas límite realistas
+- 📎 Adjunta fotos o documentos cuando sea útil
+- 💬 Responde rápidamente a las preguntas del gestor
+- 🙏 Mantén comunicación profesional y amable
+- ⭐ Completa las encuestas de satisfacción
+
+#### ❌ Evita:
+- 📝 Títulos vagos como "Ayuda" o "Problema"
+- 🚨 Marcar todo como "Crítico" si no lo es
+- 📞 Crear múltiples solicitudes para lo mismo
+- 💬 Comentarios innecesarios o muy frecuentes
+- 😤 Lenguaje agresivo o demandante
+
+### 📱 Acceso Móvil
+
+Puedes acceder al sistema desde tu teléfono:
+1. Abre el navegador en tu móvil
+2. Ve a la misma dirección: http://localhost:8200
+3. Inicia sesión normalmente
+4. La interfaz se adaptará a tu pantalla
+
+---
+
+**¡Recuerda!** 🎯
+El sistema está diseñado para hacer tu trabajo más fácil. Si tienes dudas, no dudes en crear una solicitud de "Soporte Técnico" para que te ayuden con el uso del sistema.
 
 ## 🗃️ Tablas del Módulo
 
@@ -314,6 +490,318 @@ docker-compose exec odoo bash
 # Acceder al contenedor de PostgreSQL
 docker-compose exec db psql -U odoo -d odoo
 ```
+
+## 🧪 Pruebas Cáusticas del Sistema
+
+### 🎯 ¿Qué son las Pruebas Cáusticas?
+
+Las pruebas cáusticas son pruebas exhaustivas diseñadas para "romper" el sistema y encontrar sus límites. Estas pruebas simulan condiciones extremas, errores de usuario y situaciones inesperadas para garantizar que el sistema sea robusto y confiable.
+
+### 📋 Lista de Pruebas a Realizar
+
+#### 🔥 Pruebas de Estrés y Límites
+
+**1. Prueba de Volumen de Solicitudes**
+```powershell
+# Crear múltiples solicitudes simultáneamente
+# Objetivo: Probar el rendimiento con alta carga
+```
+- Crear 100+ solicitudes en un período corto
+- Verificar que el sistema no se ralentice
+- Comprobar que todas las solicitudes se guarden correctamente
+- Validar que los números de ticket sean únicos
+
+**2. Prueba de Campos con Datos Extremos**
+- **Títulos muy largos**: Crear solicitud con título de 1000+ caracteres
+- **Descripciones masivas**: Descripción con 10,000+ caracteres
+- **Caracteres especiales**: Usar emojis, símbolos, acentos, caracteres Unicode
+- **Campos vacíos**: Intentar guardar con campos obligatorios vacíos
+
+**3. Prueba de Archivos Adjuntos**
+- Subir archivos de diferentes tipos: PDF, DOC, XLS, IMG, ZIP
+- Probar archivos muy grandes (>50MB)
+- Subir archivos con nombres especiales: espacios, acentos, símbolos
+- Intentar subir archivos corruptos
+- Subir múltiples archivos simultáneamente
+
+#### 💥 Pruebas de Casos Extremos
+
+**4. Prueba de Estados Inválidos**
+- Intentar cambiar estados de forma no secuencial
+- Probar transiciones de estado no permitidas
+- Verificar que solo usuarios autorizados puedan cambiar estados
+
+**5. Prueba de Fechas Extremas**
+- Fechas límite en el pasado
+- Fechas muy lejanas en el futuro (año 2099)
+- Fechas inválidas (30 de febrero)
+- Cambios de zona horaria
+
+**6. Prueba de Usuarios y Permisos**
+- Acceso con usuario sin permisos
+- Intentar modificar solicitudes de otros usuarios
+- Probar con usuario desactivado
+- Sesiones simultáneas del mismo usuario
+
+#### 🌐 Pruebas de Navegadores y Dispositivos
+
+**7. Compatibilidad de Navegadores**
+- Chrome (última versión)
+- Firefox (última versión)
+- Edge (última versión)
+- Safari (si tienes Mac)
+- Navegadores móviles
+
+**8. Pruebas de Responsividad**
+- Pantallas muy pequeñas (320px)
+- Pantallas muy grandes (4K)
+- Orientación vertical y horizontal en móviles
+- Zoom del navegador al 50% y 200%
+
+#### 🔒 Pruebas de Seguridad
+
+**9. Pruebas de Inyección**
+- Intentar inyectar código HTML en campos de texto
+- Probar scripts JavaScript en formularios
+- Caracteres SQL en campos de búsqueda
+
+**10. Pruebas de Autenticación**
+- Intentar acceder sin estar logueado
+- Probar con credenciales incorrectas múltiples veces
+- Verificar timeout de sesión
+
+### 🧪 Cómo Ejecutar las Pruebas
+
+#### Preparación del Entorno de Pruebas
+
+**1. Levantar el Sistema**
+```powershell
+cd [RUTA_DE_TU_PROYECTO]\modulo_odoo
+docker-compose up -d
+```
+
+**2. Verificar que Todo Esté Funcionando**
+```powershell
+docker-compose ps
+# Ambos contenedores deben estar "Up"
+```
+
+**3. Acceder al Sistema**
+- URL: http://localhost:8200
+- Usuario: admin
+- Contraseña: admin
+
+#### 📝 Ejecución de Pruebas Paso a Paso
+
+**Prueba 1: Sobrecarga de Solicitudes**
+1. Abrir múltiples pestañas del navegador (10+)
+2. En cada pestaña, crear una solicitud simultáneamente
+3. Verificar que todas se guarden correctamente
+4. Comprobar que no haya números de ticket duplicados
+
+**Resultado Esperado**: ✅ Todas las solicitudes se crean sin errores
+
+**Prueba 2: Campos con Datos Extremos**
+1. Crear solicitud con título de 500+ caracteres
+2. Descripción con texto muy largo (copiar/pegar un artículo completo)
+3. Usar caracteres especiales: áéíóú, ñ, ¿¡, €, @, #, %, &
+4. Intentar guardar
+
+**Resultado Esperado**: ✅ El sistema maneja los datos sin errores o muestra validaciones apropiadas
+
+**Prueba 3: Archivos Problemáticos**
+1. Crear un archivo de texto de 100MB
+2. Intentar subirlo como adjunto
+3. Probar con archivo .exe
+4. Archivo con nombre "archivo con espacios y acentos ñáéí.pdf"
+
+**Resultado Esperado**: ✅ El sistema rechaza archivos no permitidos o muy grandes con mensajes claros
+
+**Prueba 4: Navegación Agresiva**
+1. Hacer clic rápidamente en múltiples botones
+2. Usar el botón "Atrás" del navegador en medio de un proceso
+3. Refrescar la página mientras se guarda una solicitud
+4. Cerrar el navegador y volver a abrir
+
+**Resultado Esperado**: ✅ El sistema mantiene la consistencia de datos
+
+**Prueba 5: Estados y Transiciones**
+1. Crear una solicitud
+2. Intentar cambiarla directamente de "Pendiente" a "Cerrado"
+3. Probar cambios de estado sin ser el gestor asignado
+4. Intentar modificar solicitudes muy antiguas
+
+**Resultado Esperado**: ✅ Solo se permiten transiciones válidas según las reglas de negocio
+
+#### 🔍 Pruebas de Rendimiento
+
+**Prueba de Carga de Datos**
+1. Crear 1000+ solicitudes usando plantillas
+2. Medir tiempo de carga de la vista "Todas las Solicitudes"
+3. Probar filtros y búsquedas con gran volumen de datos
+4. Verificar que los reportes se generen en tiempo razonable
+
+**Comandos para Monitoreo**
+```powershell
+# Ver uso de recursos
+docker stats
+
+# Ver logs en tiempo real
+docker-compose logs -f odoo
+
+# Ver logs de errores
+docker-compose logs odoo | findstr ERROR
+```
+
+### 📊 Registro de Resultados
+
+#### Plantilla de Reporte de Pruebas
+
+```
+=== REPORTE DE PRUEBAS CÁUSTICAS ===
+Fecha: [FECHA]
+Versión del Sistema: [VERSIÓN]
+Navegador: [NAVEGADOR Y VERSIÓN]
+
+PRUEBA 1: Sobrecarga de Solicitudes
+- Estado: [PASÓ/FALLÓ]
+- Observaciones: [DETALLES]
+- Tiempo de respuesta: [SEGUNDOS]
+
+PRUEBA 2: Datos Extremos
+- Estado: [PASÓ/FALLÓ]
+- Observaciones: [DETALLES]
+- Errores encontrados: [LISTA]
+
+[... continuar para todas las pruebas]
+
+RESUMEN:
+- Total de pruebas: [NÚMERO]
+- Pruebas exitosas: [NÚMERO]
+- Pruebas fallidas: [NÚMERO]
+- Errores críticos: [NÚMERO]
+- Errores menores: [NÚMERO]
+```
+
+### 🚨 Qué Hacer Si Encuentras Errores
+
+#### Errores Críticos (Sistema No Funciona)
+1. **Capturar evidencia**:
+   - Screenshot del error
+   - Logs del sistema: `docker-compose logs odoo`
+   - Pasos exactos para reproducir
+
+2. **Reiniciar servicios**:
+   ```powershell
+   docker-compose restart odoo
+   ```
+
+3. **Si persiste**:
+   ```powershell
+   docker-compose down
+   docker-compose up -d
+   ```
+
+#### Errores Menores (Funcionalidad Limitada)
+1. Documentar el comportamiento inesperado
+2. Verificar si es un problema de configuración
+3. Probar en diferentes navegadores
+4. Revisar permisos de usuario
+
+### 🎯 Criterios de Aceptación
+
+**El sistema PASA las pruebas cáusticas si:**
+
+✅ **Estabilidad**: No se cuelga ni se vuelve inaccesible
+✅ **Integridad de Datos**: No se pierden ni corrompen datos
+✅ **Seguridad**: No permite accesos no autorizados
+✅ **Rendimiento**: Responde en menos de 5 segundos bajo carga normal
+✅ **Usabilidad**: Los errores muestran mensajes claros y útiles
+✅ **Recuperación**: Se recupera automáticamente de errores temporales
+
+**El sistema FALLA si:**
+
+❌ Se cuelga o se vuelve inaccesible
+❌ Se pierden datos o solicitudes
+❌ Permite acceso no autorizado a información
+❌ Tarda más de 30 segundos en responder
+❌ Muestra errores técnicos incomprensibles al usuario
+❌ Requiere reinicio manual para funcionar
+
+### 🔄 Automatización de Pruebas (Avanzado)
+
+Para equipos técnicos, se pueden crear scripts de automatización:
+
+```powershell
+# Script básico de prueba de conectividad
+$response = Invoke-WebRequest -Uri "http://localhost:8200" -UseBasicParsing
+if ($response.StatusCode -eq 200) {
+    Write-Host "✅ Sistema accesible" -ForegroundColor Green
+} else {
+    Write-Host "❌ Sistema no responde" -ForegroundColor Red
+}
+```
+
+### 📈 Métricas de Rendimiento
+
+**Benchmarks Recomendados:**
+- Tiempo de carga inicial: < 3 segundos
+- Creación de solicitud: < 2 segundos
+- Búsqueda/filtrado: < 1 segundo
+- Carga de reportes: < 10 segundos
+- Subida de archivos (10MB): < 30 segundos
+
+---
+
+**💡 Consejo**: Ejecuta estas pruebas regularmente, especialmente después de actualizaciones o cambios en el sistema. Un sistema que pasa las pruebas cáusticas es un sistema confiable para producción.
+
+### 🚀 Scripts Automatizados de Pruebas
+
+Para facilitar la ejecución de las pruebas cáusticas, se han creado varios scripts automatizados:
+
+#### 📁 Archivos de Pruebas Disponibles
+
+| Archivo | Descripción | Uso Recomendado |
+|---------|-------------|------------------|
+| `ejecutar_pruebas.bat` | **Menú interactivo** - Fácil de usar | Principiantes, uso ocasional |
+| `ejecutar_pruebas_causticas.ps1` | **Pruebas completas** con reporte HTML detallado | Validación exhaustiva, pre-producción |
+| `pruebas_causticas_simple.ps1` | **Pruebas básicas** rápidas (30 segundos) | Verificación diaria, monitoreo |
+| `GUIA_PRUEBAS_CAUSTICAS.md` | **Documentación completa** de las pruebas | Referencia y troubleshooting |
+
+#### 🖱️ Ejecución Rápida
+
+**Método más fácil (Recomendado):**
+1. Hacer **doble clic** en `ejecutar_pruebas.bat`
+2. Seleccionar el tipo de prueba desde el menú
+3. Esperar los resultados
+
+**Desde PowerShell:**
+```powershell
+# Pruebas completas (3-5 minutos)
+.\ejecutar_pruebas_causticas.ps1
+
+# Pruebas rápidas (30 segundos)
+.\pruebas_causticas_simple.ps1
+
+# Con parámetros personalizados
+.\ejecutar_pruebas_causticas.ps1 -QuickTest -ReportPath "mi_reporte.html"
+```
+
+#### 📊 Tipos de Reportes Generados
+
+- **Reporte HTML Completo**: Análisis detallado con gráficos y estadísticas
+- **Reporte Simple**: Resumen en texto plano para logs automáticos
+- **Resultados en Consola**: Feedback inmediato durante la ejecución
+
+#### 🎯 Códigos de Resultado
+
+| Código | Estado | Significado |
+|--------|--------|--------------|
+| **0** | ✅ APROBADO | Sistema funcionando correctamente |
+| **1** | ⚠️ CON ADVERTENCIAS | Problemas menores detectados |
+| **2** | ❌ RECHAZADO | Errores críticos encontrados |
+
+**Para más información detallada, consulta: `GUIA_PRUEBAS_CAUSTICAS.md`**
 
 ## 🛠️ Solución de Problemas
 
