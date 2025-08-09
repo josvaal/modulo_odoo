@@ -18,7 +18,7 @@ services:
     command: odoo -d odoo --db_user=odoo --db_password=odoo -i base
 
   db:
-    image: postgres:16.0
+    image: postgres:16
     container_name: db
     restart: unless-stopped
     ports:
